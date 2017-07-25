@@ -1,0 +1,28 @@
+#!/bin/bash 
+s1="png "
+s2="jpg "
+s3="txt "
+s4="sh "
+
+oldIFS=$IFS 
+IFS=$'\n' 
+(find . -type f) > text.txt 
+for var in `cat text.txt` 
+do 
+name=`basename "$var"` 
+ext= echo $name | cut -d'.' -f2- | cut -d'.' -f2- | cut -d'.' -f2- | cut -d'.' -f2- | cut -d'.' -f2- | cut -d'.' -f2- | cut -d'.' -f2- 
+if [ "$ext"  == "$s1" ]
+then
+mv "$var" pictures
+elif [ "$ext" == "$s2" ]
+then
+mv "$var" pictures
+elif [ "$ext" == "$s3" ]
+then
+mv "$var" text
+elif [ "$ext" == "$s4" ]
+then
+mv "$var" text
+fi
+done 
+IFS=$oldIFS
